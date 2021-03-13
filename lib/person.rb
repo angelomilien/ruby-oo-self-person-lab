@@ -1,14 +1,9 @@
 # your code goes here
 
-require "pry"
-
-
 class Person
 
-
     attr_reader :name
-    attr_writer :happiness, :hygiene
-    attr_accessor :bank_account
+    attr_accessor :bank_account, :happiness, :hygiene
 
 
     def initialize(name, bank_account=25, happiness=8, hygiene=8)
@@ -23,19 +18,17 @@ class Person
     end
 
     def hygiene
-        return @hygiene = 0 if @hygiene < 0
-        return @hygiene = 10 if @hygiene > 10
+        @hygiene = 0 if @hygiene < 0
+        @hygiene = 10 if @hygiene > 10
         @hygiene
     end
     
     def happy?
-       return true if @happiness > 7
-       false
+      @happiness > 7 ? true : false
     end
 
     def clean?
-        return true if @hygiene > 7
-        false
+         @hygiene > 7 ? true : false
     end
 
     def get_paid(salary)
@@ -50,11 +43,9 @@ class Person
     end
     
 
-
     def work_out
        self.happiness=(@happiness +=2)
        self.hygiene -= 3
-       
        "♪ another one bites the dust ♫" 
     end
 
@@ -65,15 +56,15 @@ class Person
        friend.happiness +=3
       
        "Hi #{friend.name}! It's #{name}. How are you?"
-       end
+    end
 
     def start_conversation(person, topic)
-       @person = person
-       @topic = topic
+       @person, @topic = person, topic
+   
         
        if @topic == "politics"
          self.happiness -=2
-         person.happiness -=2
+         @person.happiness -=2
          'blah blah partisan blah lobbyist'
        elsif @topic == "weather"
          self.happiness +=1
@@ -82,9 +73,5 @@ class Person
        else
          "blah blah blah blah blah"
       end 
-    end
-
-
-       
-
-end
+    end     
+end 
